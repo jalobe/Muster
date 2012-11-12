@@ -46,14 +46,12 @@ for i=0:8
             p1 = 1/(sqrt(2*pi*var1))*e^(-0.5*((x-mean1)^2)/var1);
             p2 = 1/(sqrt(2*pi*var2))*e^(-0.5*((x-mean2)^2)/var2);
             if(p1>p2)
-#printf("check\n");
                     belief = i;
             else
                     belief = j;
             endif
             actual = X_test(k,end);
             if(actual == belief)
-#printf("%d %d %d\n",belief,i,j);
                     hits = hits + 1;
             endif
         end
