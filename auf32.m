@@ -41,8 +41,14 @@ for i=0:8
         var2 = mean((proj2 - mean2).^2);
         # Klassifiziere Punkte aus Testmenge
         hits = 0;
-        for k=1:size(X_test,1)
-            x = X_test(k,1:16)*w';
+        # Bilde Testmenge
+        idx1 = find(X_test(:,end)==i);
+        idx2 = find(X_test(:,end)==j);
+        A = X_test(idx1,:);
+        B = X_test(idx2,:);
+        X = [A;B];
+        for k=1:size(X,1)
+            x = X(k,1:16)*w';
             p1 = 1/(sqrt(2*pi*var1))*e^(-0.5*((x-mean1)^2)/var1);
             p2 = 1/(sqrt(2*pi*var2))*e^(-0.5*((x-mean2)^2)/var2);
             if(p1>p2)
@@ -50,12 +56,12 @@ for i=0:8
             else
                     belief = j;
             endif
-            actual = X_test(k,end);
+            actual = X(k,end);
             if(actual == belief)
                     hits = hits + 1;
             endif
         end
-        rate = hits*100/size(X_test,1);
+        rate = hits*100/size(X,1);
         ER(i+1,j+1) = rate;
     end
 end
