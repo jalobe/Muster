@@ -37,8 +37,8 @@ for i=0:8
         proj2 = Data{j+1,1} * w';
 	mean1 = mean(proj1);
         mean2 = mean(proj2);
-        var1 = mean((proj1 - mean1).^2);
-        var2 = mean((proj2 - mean2).^2);
+        var1 = mean((proj1 - mean1) .^2);
+        var2 = mean((proj2 - mean2) .^2);
 # a priori Wahrscheinlichkeiten
 	size1 = rows(proj1);
 	size2 = rows(proj2);
@@ -51,10 +51,8 @@ for i=0:8
 	test = X_test(testids,1:end); 
         for k=1:rows(test)
             x = test(k,1:16) * w';
-            p1 = (weight1*e^(-0.5*((x-mean1)/var1)^2))/(sqrt(2*pi)*var1);
-            p2 = (weight2*e^(-0.5*((x-mean2)/var2)^2))/(sqrt(2*pi)*var2); 
-            #p1=weight1 * normpdf(x,mean1,var1);
-            #p2=weight2 * normpdf(x,mean2,var2);
+            p1 = (weight1/(sqrt(2*pi*var1))) * e^(-0.5*((x-mean1)^2)/var1);
+            p2 = (weight2/(sqrt(2*pi*var2))) * e^(-0.5*((x-mean2)^2)/var2); 
 	    s = (p1 - p2) / (p1 + p2);
 	    if(s>0)
                     belief = i;
