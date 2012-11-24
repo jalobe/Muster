@@ -19,13 +19,14 @@ for i=1:100
 	alpha(:,i) = (X'*X)^-1 * X'*y;
 end
 
-% Berechne Mittelwerte und Standardabweichungen 
-means = mean(alpha,2);
-deviations = std(alpha,0,2);
+% Berechne für erste 10 Samples Mittelwert und Standardabweichung
+ys = Data(1:10,:) * alpha;
+means = mean(ys,2);
+deviations = std(ys,0,2);
+
 
 % Ausgabe
-printf("Koeffizient\tMittelwert\tStandardabweichung\tIntervall\n\n");
-printf("alpha_0\t\t%f\t%f\t\t[%f - %f]\n",means(1),deviations(1),means(1)-2*deviations(1),means(1)+2*deviations(1));
-printf("alpha_1\t\t%f\t%f\t\t[%f - %f]\n",means(2),deviations(2),means(2)-2*deviations(2),means(2)+2*deviations(2));
-printf("alpha_2\t\t%f\t%f\t\t[%f - %f]\n",means(3),deviations(3),means(3)-2*deviations(3),means(3)+2*deviations(3));
-printf("alpha_3\t\t%f\t%f\t\t[%f - %f]\n",means(4),deviations(4),means(4)-2*deviations(4),means(4)+2*deviations(4));
+printf("Sample\tMittelwert\tStandardabweichung\tIntervall\n\n");
+for i=1:10
+	printf("%i\t%f\t%f\t\t[%f - %f]\n",i,means(i),deviations(i),means(i)-2*deviations(i),means(i)+2*deviations(1));
+end
