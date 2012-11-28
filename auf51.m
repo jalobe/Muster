@@ -4,9 +4,10 @@ clc;
 
 % Daten einlesen
 file = dlmread('prostatecancer.txt');
+X_train = file(find(file(:,end)==1),:);
 
-y = file(:,10);
-X = file(:,2:9);
+y = X_train(:,10);
+X = X_train(:,2:9);
 
 % Normiere X
 for i=1:8
@@ -19,10 +20,6 @@ end
 meanY = mean(y);
 deviationY = std(y);
 y = (y-meanY)./deviationY;
-
-%meanX = mean(X);
-%deviationX = sqrt(mean(sum((X-meanX).^2,2)));
-%X = (X - meanX)./deviationX;
 
 
 % Berechne die Werte für df(delta) und alpha
