@@ -35,3 +35,16 @@ end
 
 % Plotte die alphas gegen df(delta)
 plot(xs,ys,'-');
+grid on;
+ylabel('Koeffizienten');
+xlabel('df(\lambda)');
+textYPos = ys(1,:);
+
+text(8.1,textYPos(1),'lcavol');
+text(8.1,textYPos(2),'lweight');
+text(8.1,textYPos(3),'age');
+text(8.1,textYPos(4),'lbph');
+text(8.1,textYPos(5)+0.015,'svi');
+text(8.1,textYPos(6),'lcp');
+text(8.1,textYPos(7),'gleason');
+text(8.1,textYPos(8)-0.015,'pgg45');
