@@ -37,14 +37,22 @@ X_haupt = u;
 X_test = X_test * X_haupt;
 X_train = X_train * X_haupt;
 
+% Nimm ersten Digit aus X_train und plotte ihn
+digit = X_train(1,:);
+xs=digit(1:2:16);
+ys=digit(2:2:16);
+plot(xs,ys,'or'); hold on;
+plot(xs,ys,'-');
+axis equal;
+set(gca,'XTick',[]);
+set(gca,'YTick',[]);
+
+% Füge die Labels wieder ran
 X_test = [X_test(:,1:10),y_test];
 X_train = [X_train(:,1:10),y_train];
 
 
-
-
-
-# Finde Cluster, Means und Kovarianzmatrizen
+% Finde Cluster, Means und Kovarianzmatrizen
 for i=0:9
     idx=find(X_train(:,end)==i);
     Data{i+1,1} = X_train(idx,1:10);
@@ -58,20 +66,20 @@ for i=0:8
         u2 = Data{j+1,2};
         E1 = Data{i+1,3};
         E2 = Data{j+1,3};
-        # Finde Projektionsrichtung w
+        % Finde Projektionsrichtung w
         w = (u1 - u2)/(E1 + E2);
-        # Normalisiere w
+        % Normalisiere w
         w = w/(norm(w));
-        # Projiziere Punkte auf w und berechne Mittelwert und Varianz
+        % Projiziere Punkte auf w und berechne Mittelwert und Varianz
         proj1 = Data{i+1,1} * w';	
         proj2 = Data{j+1,1} * w';
         mean1 = mean(proj1);
         mean2 = mean(proj2);
         var1 = mean((proj1 - mean1).^2);
         var2 = mean((proj2 - mean2).^2);
-        # Klassifiziere Punkte aus Testmenge
+        % Klassifiziere Punkte aus Testmenge
         hits = 0;
-        # Bilde Testmenge
+        % Bilde Testmenge
         idx1 = find(X_test(:,end)==i);
         idx2 = find(X_test(:,end)==j);
         A = X_test(idx1,:);
@@ -96,6 +104,6 @@ for i=0:8
     end
 end
 
-# ER ausgeben
+%	 ER ausgeben
 ER
 
