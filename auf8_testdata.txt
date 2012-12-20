@@ -1,0 +1,44 @@
+
+
+PENDIGITS:
+
+Online:
+		Iterationen		innere Knoten		ER			
+		250000			15					89.823		
+		250000			30					91.652		
+		500000			15					91.767		
+		500000			30					92.081		
+
+
+Offline:
+		Subsetgröße		Iterationen		innere Knoten		ER			
+		100				3463			15					91.166		
+		100				1190			30					92.739		
+		200				5069			15					91.138		
+		200				1382			30					94.454		
+		300				2663			15					92.567					
+		300				1492			30					93.939
+		300				1247			50					94.854	
+		
+		
+IONOSPHERE:
+
+Online:
+		Iterationen		innere Knoten		ER
+		100000			15					82.781	
+		
+Offline:
+		Iterationen		innere Knoten		ER
+		472				15					84.768
+		
+		
+		
+RPROP:
+
+Pendigitis:
+		Iterationen		innere Knoten		ER
+		45				15					68.611
+
+Ionosphere:		
+		Iterationen		innere Knoten		ER
+		119				15					85
